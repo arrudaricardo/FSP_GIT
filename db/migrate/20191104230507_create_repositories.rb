@@ -7,9 +7,9 @@ class CreateRepositories < ActiveRecord::Migration[6.0]
       t.timestamps
     end
 
-    add_index:repositories, :name
-    add_index:repositories, :owner_id 
-    add_index:repositories, [:name, :owner_id], unique: true
+    add_index :repositories, :name
+    add_index :repositories, :owner_id 
+    add_index :repositories, [:name, :owner_id], unique: true
 
   end
 end
