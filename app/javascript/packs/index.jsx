@@ -4,13 +4,11 @@
 
 import React from 'react'
 import ReactDOM from 'react-dom'
-import PropTypes from 'prop-types'
-import App from '../components/App'
-
-
-
+import App from '../src/components/App'
+import {login} from '../src/util/session_api_util'
 
 document.addEventListener('DOMContentLoaded', () => {
+    window.login = login;
     const root = document.getElementById('root')
     ReactDOM.render(<App/>, root)
 })
