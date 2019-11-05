@@ -1,10 +1,25 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id              :integer          not null, primary key
+#  email           :string           not null
+#  username        :string           not null
+#  avatar_image    :string
+#  password_digest :string           not null
+#  session_token   :string           not null
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
+
 class User < ApplicationRecord
-  validates :username, :password_digest, :session_token, presence: true
+  validates :username, :email, :password_digest, :session_token, presence: true
   validates :password, length: { minimum: 6, allow_nil: true }
 
   attr_reader :password
 
-  has_many :links
+  has_many :respositories
+  has_many :issues
   has_many :comments
 
   after_initialize :ensure_session_token
