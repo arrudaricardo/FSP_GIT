@@ -5,10 +5,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import App from '../src/components/App'
-import {login} from '../src/util/session_api_util'
 
 document.addEventListener('DOMContentLoaded', () => {
-    window.login = login;
     const root = document.getElementById('root')
     ReactDOM.render(<App/>, root)
 })
