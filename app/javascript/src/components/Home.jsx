@@ -10,7 +10,7 @@ import {StoreContext} from './App'
     <div className="body"> 
         <div className="home">
 
-            <div className="welcome">Welcome {user && user.username.toUpperCase()} to Gitmokey
+            <div className="welcome">Welcome {user && user.username} to Gitmokey
             </div>
 
         </div>

@@ -39,8 +39,10 @@ $size: 11px;
 .Nav {
   display: grid;
   grid-area: nav;
-  grid-template-columns: repeat(3, auto);
-  align-items: center;
+    grid-template-columns: repeat(2, auto);
+      grid-column-start: 3;
+    column-gap: 0;
+  align-items: center; ;
   justify-items: center;
 }
 .Nav a {
@@ -53,6 +55,7 @@ $size: 11px;
   transform: scale(1.1);
 }
 .Nav button {
+    grid-column-start: 3;
   outline: none;
   border: none;
   color: #fff;
