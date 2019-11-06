@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import "../css/Header.css";
 import logo from '../img/logo.png'
 import { CSSTransition } from "react-transition-group";
+import Burger from '../img/menu-button-of-three-horizontal-lines.svg'
 
 
 export default function Header() {
@@ -33,7 +33,9 @@ export default function Header() {
 
   return (
     <header className="Header">
+        <NavLink to='/'>
         <img src={logo} className="Logo" alt="logo" />
+        </NavLink>
       <CSSTransition
         in={!isSmallScreen || isNavVisible}
         timeout={350}
@@ -42,12 +44,13 @@ export default function Header() {
       >
         <nav className="Nav">
 
-        <NavLink to="/">Home</NavLink>
         <NavLink to="/signup">Signup</NavLink>
         <NavLink to="/login">Login</NavLink>
-          <button>Logout</button>
+         <button>Logout</button>
+
         </nav>
       </CSSTransition>
+      <img onClick={toggleNav} className="Burger"src={Burger}/>
     </header>
   );
 }

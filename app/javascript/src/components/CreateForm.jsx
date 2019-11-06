@@ -1,28 +1,45 @@
-import React,{useState, useContext} from 'react';
+import React,{useState, useContext, useEffect} from 'react';
 import {StoreContext} from './App'
+import { CLEAR_ERRORS } from '../state/constants.js'
 import {signup} from '../state/actions/index'
 
 const CreateForm = () => {
     const [username, setUsername] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const { dispatch} = useContext(StoreContext)
+    const { state, dispatch} = useContext(StoreContext)
+
+
+    // Clear error when unmont
+    useEffect(()=>{
+      dispatch({type: CLEAR_ERRORS})   
+    },[])
 
     const onSubmit = async e => {
         e.preventDefault();
         signup({user:{username, email, password}})(dispatch)
-  };
+      };
 
     return (
-        <>
-            <h2>Sign-up</h2>
+        <div className='AcessForm'> 
+            <div className="form-body">
+            <div className='form-error'>
+                {state.errors.length > 0 && state.errors.slice(-1)[0].map( (error, i) => (
+                    <div key={i} > {error} </div>
+                ))}
+            </div>
             <form onSubmit={onSubmit}>
-            <input type="text" placeholder="username" value={username} onChange={e => setUsername(e.target.value)} /> 
-            <input type="text" placeholder="email" value={email} onChange={e => setEmail(e.target.value)} /> 
-            <input type="password" placeholder="password" value={password} onChange={e => setPassword(e.target.value)} /> 
-            <input type="submit" value="Sign Up"/>
+                <div>
+                    <input type="text" placeholder="username" value={username} onChange={e => setUsername(e.target.value)} /> 
+                    <input type="text" placeholder="e-mail" value={email} onChange={e => setEmail(e.target.value)} /> 
+                    <input type="password" placeholder="password" value={password} onChange={e => setPassword(e.target.value)} /> 
+                </div>
+                <div className='form-submit'>
+                    <input type="submit" value="Sign Up"/>
+                </div>
             </form>
-        </>
+        </div>
+        </div>
     )
 }
 

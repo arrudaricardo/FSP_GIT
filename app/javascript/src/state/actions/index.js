@@ -14,16 +14,22 @@ export const logoutCurrentUser = () => ({
   type: LOGOUT_CURRENT_USER
 });
 
-export const receiveErrors = errors => ({
+export const receiveErrors = error => ({
   type: RECEIVE_SESSION_ERRORS,
-  errors
+  error
 });
 
 export const signup = user => dispatch =>
-  sessionAPI.signup(user).then(resp => dispatch(receiveCurrentUser(resp.data)));
+  sessionAPI
+    .signup(user)
+    .then(resp => dispatch(receiveCurrentUser(resp.data)))
+    .catch(resp => dispatch(receiveErrors(resp)));
 
 export const login = user => dispatch =>
-  sessionAPI.login(user).then(resp => dispatch(receiveCurrentUser(resp.data)));
+  sessionAPI
+    .login(user)
+    .then(resp => dispatch(receiveCurrentUser(resp.data)))
+    .catch(resp => dispatch(receiveErrors(resp)));
 
 export const logout = user => dispatch =>
   sessionAPI.logout(user).then(() => dispatch(logoutCurrentUser()));
