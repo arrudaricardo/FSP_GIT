@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_04_233121) do
+ActiveRecord::Schema.define(version: 2019_11_06_182133) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 2019_11_04_233121) do
     t.text "body", null: false
     t.boolean "open", default: true
     t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 5, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["author_id"], name: "index_issues_on_author_id"
     t.index ["repo_id"], name: "index_issues_on_repo_id"
     t.index ["title", "repo_id"], name: "index_issues_on_title_and_repo_id", unique: true
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 2019_11_04_233121) do
     t.integer "owner_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "description"
     t.index ["name", "owner_id"], name: "index_repositories_on_name_and_owner_id", unique: true
     t.index ["name"], name: "index_repositories_on_name"
     t.index ["owner_id"], name: "index_repositories_on_owner_id"

@@ -27,7 +27,7 @@ class Issue < ApplicationRecord
 
   has_many :comments,
     class_name: 'Comment',
-    foreign_key: :issue_id
+    foreign_key: :issue_id,
     primary_key: :id
 
 end
