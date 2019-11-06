@@ -10,13 +10,17 @@ const reducer = (state = {}, action) => {
   const newState = Object.assign({}, state);
   switch (action.type) {
     case RECEIVE_CURRENT_USER:
-      newState.session = action.currentUser;
+      newState.session.currentUser = action.currentUser;
       return newState;
+
     case LOGOUT_CURRENT_USER:
-      return { id: null };
+      newState.session.currentUser = null;
+      return newState;
+
     case RECEIVE_SESSION_ERRORS:
       newState.errors.push(action.error.response.data);
       return newState;
+
     case CLEAR_ERRORS:
       newState.errors = [];
       return newState;

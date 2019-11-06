@@ -24,6 +24,12 @@ $size: 11px;
  filter: invert(100%);
 }
 
+.Logo:hover {
+
+ filter: invert(30%);
+    // filter: invert(42%) sepia(93%) brightness(119%) contrast(119%);
+}
+
 .Header img{
   fill: currentColor;
   height: 2em;

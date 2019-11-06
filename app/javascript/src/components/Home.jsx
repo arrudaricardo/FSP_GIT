@@ -4,13 +4,13 @@ import {StoreContext} from './App'
 
  const Home = () => {
     const { state } = useContext(StoreContext)
-     const currentUser = state.session
+     const user = state.session.currentUser
 
     return (
     <div className="body"> 
         <div className="home">
 
-            <div className="welcome">Welcome to {Object.keys(currentUser).length == 0 ? "": currentUser.username } Gitmokey
+            <div className="welcome">Welcome {user && user.username.toUpperCase()} to Gitmokey
             </div>
 
         </div>

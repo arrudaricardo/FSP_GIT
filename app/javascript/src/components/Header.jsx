@@ -1,14 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { NavLink } from "react-router-dom";
 import logo from '../img/logo.png'
 import { CSSTransition } from "react-transition-group";
 import Burger from '../img/menu-button-of-three-horizontal-lines.svg'
-
+import { LOGOUT_CURRENT_USER } from '../state/constants'
+import {StoreContext} from './App'
 
 export default function Header() {
   const [isNavVisible, setNavVisibility] = useState(false);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
 
+    const { state, dispatch} = useContext(StoreContext)
+     
   useEffect(() => {
     const mediaQuery = window.matchMedia("(max-width: 700px)");
     mediaQuery.addListener(handleMediaQueryChange);
@@ -31,6 +34,12 @@ export default function Header() {
     setNavVisibility(!isNavVisible);
   };
 
+    const handleLogout = (e) => {
+            e.preventDefault()
+            console.log('logout')
+            dispatch({type: LOGOUT_CURRENT_USER})
+    }
+
   return (
     <header className="Header">
         <NavLink to='/'>
@@ -43,10 +52,7 @@ export default function Header() {
         unmountOnExit
       >
         <nav className="Nav">
-
-        <NavLink to="/signup">Signup</NavLink>
-        <NavLink to="/login">Login</NavLink>
-         <button>Logout</button>
+            {state.session.currentUser ? <button onClick={handleLogout}>Logout</button> : <> <NavLink to="/signup">Signup</NavLink> <NavLink to="/login">Login</NavLink> </>  }
 
         </nav>
       </CSSTransition>

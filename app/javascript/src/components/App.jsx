@@ -16,7 +16,7 @@ export const initialState = {
 
     ui: {loading: false},
     errors: [],
-    session: {}
+    session: {currentUser: null}
     
 };
 

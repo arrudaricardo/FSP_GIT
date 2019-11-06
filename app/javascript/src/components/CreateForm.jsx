@@ -2,6 +2,7 @@ import React,{useState, useContext, useEffect} from 'react';
 import {StoreContext} from './App'
 import { CLEAR_ERRORS } from '../state/constants.js'
 import {signup} from '../state/actions/index'
+import { useHistory } from "react-router-dom";
 
 const CreateForm = () => {
     const [username, setUsername] = useState('')
@@ -9,11 +10,21 @@ const CreateForm = () => {
     const [password, setPassword] = useState('')
     const { state, dispatch} = useContext(StoreContext)
 
+    let history = useHistory();
 
     // Clear error when unmont
     useEffect(()=>{
       dispatch({type: CLEAR_ERRORS})   
+        return () => {
+          dispatch({type: CLEAR_ERRORS})   
+        }
     },[])
+
+    useEffect(() => {
+        if (state.session.currentUser !== null) {
+            history.push('/') 
+        }
+    },[state])
 
     const onSubmit = async e => {
         e.preventDefault();
