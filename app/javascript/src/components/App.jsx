@@ -5,6 +5,8 @@ import Header from './Header'
 import LoginForm from './LoginForm'
 import CreateForm from './CreateForm'
 import Home from './Home'
+import CreateRepo from './CreateRepo'
+import Repository from './Repository'
 
 export const initialState = {
     entities: {
@@ -35,10 +37,27 @@ const App = () => {
         <BrowserRouter> 
             <StoreContext.Provider value={{state, dispatch}}> 
                 <div className="container">
+
                    <Header/>
-                  <Route exact path="/" component={Home} />
-                  <Route exaxt path="/signup" component={CreateForm} />
-                  <Route exact path="/login" component={LoginForm} />
+                   <Route exact path="/">
+                        <Home/> 
+                   </Route>
+
+                  <Route exaxt path="/signup">
+                      <CreateForm/>
+                   </Route>
+
+                  <Route exaxt path="/create">
+                      <CreateRepo/>
+                   </Route>
+
+                   <Route exact path="/login" >
+                       <LoginForm/>
+                   </Route>
+
+                   <Route path="/:user_name/:repo_name" >
+                       <Repository/>
+                   </Route>
                 </div>
             </StoreContext.Provider>
         </BrowserRouter> 

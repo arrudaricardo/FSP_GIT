@@ -29,5 +29,5 @@ export const deleteRepo = repoId => axios.delete(`/api/repositories/${repoId}`);
 // create repository
 //localhost:3000/api/repositories/?[repository][name]=Test Name&[repository[description]=Description Test
 export const postRepo = repository =>
-  axios.post(`/api/repositories`, respository);
+  axios.post(`/api/repositories`, repository);
 

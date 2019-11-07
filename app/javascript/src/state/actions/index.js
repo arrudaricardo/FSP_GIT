@@ -1,16 +1,20 @@
 import * as sessionAPI from "../../util/session_api_util";
+import * as repositoryAPI from "../../util/repository_api";
+import * as userAPI from "../../util/user_api";
+import * as rootAPI from "../../util/root_api";
 import {
   RECEIVE_CURRENT_USER,
   LOGOUT_CURRENT_USER,
   RECEIVE_SESSION_ERRORS,
   GET_REPOSITORIES,
   DELETE_REPOSITORY,
-  GET_REPOSITORY
+  GET_REPOSITORY,
+  RECEIVE_USER
 } from "../constants";
 
-export const receiveCurrentUser = currentUser => ({
+export const receiveCurrentUser = user => ({
   type: RECEIVE_CURRENT_USER,
-  currentUser
+  user
 });
 
 export const logoutCurrentUser = () => ({
@@ -32,8 +36,14 @@ export const receiveRepo = repo => ({
   repo
 });
 
-export const deleteRepository = () => ({
-  type: DELETE_REPOSITORY
+export const deleteRepository = repoId => ({
+  type: DELETE_REPOSITORY,
+  repoId
+});
+
+export const receiveUser = user => ({
+  type: RECEIVE_USER,
+  user
 });
 
 // Session Actions
@@ -55,28 +65,47 @@ export const logout = () => dispatch =>
     .then(() => dispatch(logoutCurrentUser()))
     .catch(resp => dispatch(receiveErrors(resp)));
 
-// Repository actions
-export const getRepos = () => dispatch =>
-  sessionAPI
-    .getRepos()
-    .then(resp => dispatch(receiveRepo(resp)))
+// user
+export const getUser = userId => dispatch =>
+  userAPI
+    .getUser(userId)
+    .then(resp => dispatch(receiveUser(resp.data)))
     .catch(resp => dispatch(receiveErrors(resp)));
 
+// Repository actions
+export const getRepos = () => dispatch =>
+  repositoryAPI
+    .getRepos()
+    .then(resp => dispatch(receiveRepos(resp)))
+    .catch(resp => dispatch(receiveErrors(resp.reponse.data)));
+
 export const getRepo = repoId => dispatch =>
-  sessionAPI
+  repositoryAPI
     .getRepo(repoId)
     .then(resp => dispatch(receiveRepo(resp)))
     .catch(resp => dispatch(receiveErrors(resp)));
 
 export const createRepo = repo => dispatch =>
-  sessionAPI
-    .createRepo(repo)
+  repositoryAPI
+    .postRepo(repo)
     .then(resp => dispatch(receiveRepo(resp)))
     .catch(resp => dispatch(receiveErrors(resp)));
 
 export const deleteRepo = repoId => dispatch =>
-  sessionAPI
+  repositoryAPI
     .deleteRepo(repoId)
-    .then(() => dispatch(deleteRepository()))
+    .then(() => dispatch(deleteRepository(repoId)))
     .catch(resp => dispatch(receiveErrors(resp)));
 
+// root API
+export const getRepoByUsername = (username, repo_name) => dispatch =>
+  rootAPI
+    .getRootApi(username, repo_name)
+    .then(resp => dispatch(receiveRepo(resp)))
+    .catch(resp => dispatch(receiveErrors(resp)));
+
+export const getReposByUsername = username => dispatch =>
+  rootAPI
+    .getRootApi(username)
+    .then(resp => dispatch(receiveUser(resp)))
+    .catch(resp => dispatch(receiveErrors(resp)));

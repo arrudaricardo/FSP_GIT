@@ -52,7 +52,15 @@ export default function Header() {
         unmountOnExit
       >
         <nav className="Nav">
-            {state.session.currentUser ? <button onClick={handleLogout}>Logout</button> : <> <NavLink to="/signup">Signup</NavLink> <NavLink to="/login">Login</NavLink> </>  }
+            {state.session.currentUser ? 
+            <>
+                <NavLink to="/create">Create Repo</NavLink>
+                <button onClick={handleLogout}>Logout</button>
+            </>
+                :
+            <> <NavLink to="/signup">Signup</NavLink> <NavLink to="/login">Login</NavLink> 
+            </> 
+            }
 
         </nav>
       </CSSTransition>

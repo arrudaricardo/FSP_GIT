@@ -5,8 +5,7 @@ import {
   CLEAR_ERRORS,
   GET_REPOSITORY,
   GET_REPOSITORIES,
-  DELETE_REPOSITORY,
-  RECEIVE_USER
+  DELETE_REPOSITORY
 } from "../constants";
 
 const reducer = (state = {}, action) => {
@@ -14,9 +13,7 @@ const reducer = (state = {}, action) => {
   const newState = Object.assign({}, state);
   switch (action.type) {
     case RECEIVE_CURRENT_USER:
-      newState.session.currentUser = action.user.information;
-      newState.entities.users[action.user.informamtion.id] =
-        action.user.repositories;
+      newState.session.currentUser = action.currentUser;
       return newState;
 
     case LOGOUT_CURRENT_USER:
@@ -29,14 +26,6 @@ const reducer = (state = {}, action) => {
 
     case CLEAR_ERRORS:
       newState.errors = [];
-      return newState;
-
-    case RECEIVE_USER:
-      newState.entities.users[action.user.information.id] =
-        action.user.information;
-      for (let repo of action.user.repositories) {
-        newState.entities.repositories[repo.id] = repo;
-      }
       return newState;
 
     case GET_REPOSITORIES:
