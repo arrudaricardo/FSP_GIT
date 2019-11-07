@@ -1,33 +1,48 @@
-import React,{ useContext, useEffect, useState} from 'react'
+import React, {useContext, useState, useEffect} from 'react'
 import {StoreContext} from './App'
-import {useParams} from 'react-router-dom'
-import { getRepoByUsername } from '../state/actions/index'
+import {useParams, Link} from 'react-router-dom'
+import {getRepoByUsername} from '../state/actions/index'
 
-const Repository = () => {
-    let { user_name, repo_name } = useParams();
-    const { state, dispatch} = useContext(StoreContext)
-    const [repository, setRepository] = useState(null)
+const Respository = () => {
+    const { username, repo_name } = useParams();
+    const [repo, setRepo] = useState(null)
+    const {state, dispatch} = useContext(StoreContext)
+
+    useEffect( ()=> {
+        getRepoByUsername(username, repo_name)(dispatch)
+
+    
+    },[])
 
     useEffect( () => {
-        console.log(user_name, repo_name)
-    for (let repo of state.entities.repositories) {
-        if (repo.username === user_name && repo.name === repo_name){
-            setRepository(repo)
-        }}
-        if (repository === null) {
-            // get repo by name          
-            getRepoByUsername({username: user_name, repo_name: repo_name})(dispatch)
-        }
-    }
-    ,[state.entities.repositories])
+    let a = Object.values(state.entities.repositories)
+        a.forEach( el => {
+            if (el.owner === username) {
+                setRepo(el)
+            }
+        } )
+        console.log(repo)
+    } )
+
     return (
-        <>
-            <h1>{ repository.name }</h1>
-            <div>
-            <h3>repository.description</h3>
-            </div>
-        </>
+        <div className='repository'>
+            { repo &&  
+                    (<div className='repo-container'> 
+                        <div className='repo-info'> 
+                            <div className="repo-info-name">Name:
+                                <div> {repo.name} </div>
+                            </div>
+
+                            <div className='repo-info-description'>Description:
+                                <div> {repo.description} </div>
+                            </div>
+
+                            <div className='repo-body'> </div>
+
+                        </div> </div>) 
+            } 
+        </div>
     )
 }
 
-export default Repository;
+export default Respository;

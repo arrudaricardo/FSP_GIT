@@ -14,9 +14,15 @@ const reducer = (state = {}, action) => {
   const newState = Object.assign({}, state);
   switch (action.type) {
     case RECEIVE_CURRENT_USER:
-      newState.session.currentUser = action.user.information;
-      newState.entities.users[action.user.informamtion.id] =
-        action.user.repositories;
+      newState.session.currentUser = action.user.user.information;
+      newState.entities.users[action.user.user.information.username] = {
+        repositories: action.user.user.repositories
+      };
+
+      for (let repo of action.user.user.repositories) {
+        newState.entities.repositories[repo.id] = repo;
+      }
+
       return newState;
 
     case LOGOUT_CURRENT_USER:
@@ -32,9 +38,12 @@ const reducer = (state = {}, action) => {
       return newState;
 
     case RECEIVE_USER:
-      newState.entities.users[action.user.information.id] =
-        action.user.information;
-      for (let repo of action.user.repositories) {
+      newState.entities.users[action.user.data.user.information.username] = {
+        info: action.user.data.user.information,
+        repositories: action.user.data.user.repositories
+      };
+
+      for (let repo of action.user.data.user.repositories) {
         newState.entities.repositories[repo.id] = repo;
       }
       return newState;

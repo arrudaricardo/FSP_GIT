@@ -106,6 +106,6 @@ export const getRepoByUsername = (username, repo_name) => dispatch =>
 
 export const getReposByUsername = username => dispatch =>
   rootAPI
-    .getRootApi(username)
+    .getUserRepos(username)
     .then(resp => dispatch(receiveUser(resp)))
     .catch(resp => dispatch(receiveErrors(resp)));

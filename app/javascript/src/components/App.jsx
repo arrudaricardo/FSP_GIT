@@ -1,11 +1,12 @@
 import React, {useReducer, createContext, useEffect} from 'react'
 import reducer from '../state/reducers/index'
-import { BrowserRouter, Route } from "react-router-dom";
+import { HashRouter, Route, Switch } from "react-router-dom";
 import Header from './Header'
 import LoginForm from './LoginForm'
 import CreateForm from './CreateForm'
 import Home from './Home'
 import CreateRepo from './CreateRepo'
+import UserRepos from './UserRepos'
 import Repository from './Repository'
 
 export const initialState = {
@@ -34,33 +35,40 @@ const App = () => {
 
     return (
     <div className='App'>
-        <BrowserRouter> 
+        <HashRouter> 
             <StoreContext.Provider value={{state, dispatch}}> 
                 <div className="container">
 
                    <Header/>
-                   <Route exact path="/">
-                        <Home/> 
-                   </Route>
+                   <Switch> 
+                       <Route exact path="/">
+                            <Home/> 
+                       </Route>
 
-                  <Route exaxt path="/signup">
-                      <CreateForm/>
-                   </Route>
+                      <Route exaxt path="/signup">
+                          <CreateForm/>
+                       </Route>
 
-                  <Route exaxt path="/create">
-                      <CreateRepo/>
-                   </Route>
+                      <Route exaxt path="/create">
+                          <CreateRepo/>
+                       </Route>
 
-                   <Route exact path="/login" >
-                       <LoginForm/>
-                   </Route>
+                       <Route exact path="/login" >
+                           <LoginForm/>
+                       </Route>
+                        
+                       <Route exact path="/user/:username" >
+                           <UserRepos/>
+                       </Route>
 
-                   <Route path="/:user_name/:repo_name" >
-                       <Repository/>
-                   </Route>
+                       <Route exact path="/user/:username/:repo_name" >
+                           <Repository/>
+                       </Route>
+
+                    </Switch>
                 </div>
             </StoreContext.Provider>
-        </BrowserRouter> 
+        </HashRouter> 
     </div>
     )
 }

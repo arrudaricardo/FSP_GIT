@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import {StoreContext} from './App'
-import UserRepos from './UserRepos'
 
 
  const Home = () => {
@@ -12,10 +11,7 @@ import UserRepos from './UserRepos'
         <div className="home">
             <div className="welcome">Welcome {user && user.username} to Gitmokey
             </div>
-            {user && <UserRepos username={user.username} />}
-
         </div>
-        <div className='content'></div>
 
     </div>
     )

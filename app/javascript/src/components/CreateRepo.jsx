@@ -28,9 +28,6 @@ const CreateForm = () =>{
         <div className='AcessForm'> 
             <div className="form-body">
             <div className='form-error'>
-                {state.errors.length > 0 && state.errors.slice(-1)[0].map( (error, i) => (
-                    <div key={i} > {error} </div>
-                ))}
             </div>
             <form onSubmit={handleSubmit}>
                 <div>
