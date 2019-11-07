@@ -1,5 +1,10 @@
 class Api::RootController < ApplicationController
 
+  def test 
+    # a = Repository.git_init_bare('ricardo', 'lol')
+    a = Repository.delete_repo('ricardo', 'lol')
+    render json: a
+  end
 
   # params, 
   def api

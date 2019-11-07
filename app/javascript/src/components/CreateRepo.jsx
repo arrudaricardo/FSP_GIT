@@ -2,8 +2,10 @@ import React,{useState, useEffect, useContext} from 'react';
 import { StoreContext } from '../../src/components/App'
 import { CLEAR_ERRORS } from '../state/constants'
 import { createRepo } from '../state/actions/index'
+import {useHistory} from 'react-router-dom'
 
 const CreateForm = () =>{
+    let history = useHistory();
 
     const [name, setName] = useState('')
     const [description, setDescription] = useState('')
@@ -19,7 +21,9 @@ const CreateForm = () =>{
 
     const handleSubmit = async e => {
         e.preventDefault();
-        createRepo({repository:{name, description }})(dispatch)
+        createRepo({repository:{name, description }})(dispatch);
+        history.push(`/user/${state.currentUser.username}/${name}`)
+
     }
     
     

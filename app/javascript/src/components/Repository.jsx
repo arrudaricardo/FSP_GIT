@@ -1,6 +1,6 @@
 import React, {useContext, useState, useEffect} from 'react'
 import {StoreContext} from './App'
-import {useParams, Link} from 'react-router-dom'
+import {useParams} from 'react-router-dom'
 import {getRepoByUsername} from '../state/actions/index'
 
 const Respository = () => {
@@ -41,8 +41,11 @@ const Respository = () => {
 
                         </div> </div>) 
             } 
+
+            <button> DELETE REPO </button>
         </div>
     )
 }
 
 export default Respository;
+//TODO: delete button

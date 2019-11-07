@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     end
 
 
+    get 'test/', to: 'root#test'
 
     # post 'getUserByUsername' to: 'user#showByUsername'
     # post ":username" => "root#api", :as => :api_root
@@ -22,6 +23,7 @@ Rails.application.routes.draw do
     get ':username/', to: 'root#username'
     get ':username/:repo_name', to: 'root#repo_name'
     
+
   # Rediret to / if not routers match
   # get '*path' => redirect('/')
 

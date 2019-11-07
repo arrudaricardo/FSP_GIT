@@ -26,4 +26,18 @@ class Repository < ApplicationRecord
     foreign_key: :repo_id,
     primary_key: :id
 
+  # initialize a git --bare init at storage/username/reponame/
+  # @params username: string, reponame: string
+  # @return boolean
+  #
+  def self.git_init_bare(username, reponame)
+      path = "storage/#{username}/#{reponame}/"
+      return `git init --bare #{path}`
+  end
+
+  def self.delete_repo(username, reponame)
+    path = "./storage/#{username}/#{reponame}"
+      return `rm -rf #{path}` 
+  end
+
 end
