@@ -40,4 +40,10 @@ class Repository < ApplicationRecord
       return `rm -rf #{path}` 
   end
 
+  # return list of directories 
+  def self.ls_files_tree(username, reponame)
+    path = "./storage/#{username}/#{reponame}"
+    `git -C #{path} ls-tree --full-tree -r --name-only HEAD`
+  end
+
 end

@@ -22,7 +22,7 @@ const CreateForm = () =>{
     const handleSubmit = async e => {
         e.preventDefault();
         createRepo({repository:{name, description }})(dispatch);
-        history.push(`/user/${state.currentUser.username}/${name}`)
+        history.push(`/user/${state.session.currentUser.username}/${name}`)
 
     }
     

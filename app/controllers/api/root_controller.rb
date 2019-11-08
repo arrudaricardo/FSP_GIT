@@ -2,7 +2,8 @@ class Api::RootController < ApplicationController
 
   def test 
     # a = Repository.git_init_bare('ricardo', 'lol')
-    a = Repository.delete_repo('ricardo', 'lol')
+    # a = Repository.delete_repo('ricardo', 'lol')
+    a = Repository.ls_files_tree('ricardo', 'test')
     render json: a
   end
 

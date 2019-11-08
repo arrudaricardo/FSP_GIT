@@ -41,8 +41,7 @@ const Respository = () => {
 
                         </div> </div>) 
             } 
-
-            <button> DELETE REPO </button>
+ 
         </div>
     )
 }
