@@ -32,7 +32,7 @@ const LoginForm = () => {
   };
 
     return (
-        <div className='AcessForm'>
+        <>
                 <div className='form-error'>
                     {state.errors.slice(0,2).map( (error, i) => (
                         <div key={i} > {error} </div>
@@ -47,7 +47,7 @@ const LoginForm = () => {
                         <input type="submit" value="Sign In"/>
                     </div>
                 </form>
-            </div>
+            </>
     )
 }
 

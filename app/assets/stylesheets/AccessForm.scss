@@ -1,61 +1,3 @@
-// .AcessForm {
-//   display: flex;
-//   justify-content: center;
-
-//   border-radius: 6px;
-
-//   width: 100vw;
-//   margin-top: 5em;
-// }
-
-// .AccessForm h2 {
-//   padding: 22em;
-//   align-items: center;
-// }
-
-// .form-body {
-//   display: flex;
-//   flex-direction: column;
-//   flex-wrap: wrap;
-//   width: 17em;
-// }
-
-// .AcessForm input[type="submit"] {
-//     float: right;
-//     padding: 0.35em 1.2em;
-//     border:0.1em solid #FFFFFF;
-//     margin:0 0.3em 0.3em 0;
-//     border-radius:0.12em;
-//     box-sizing: border-box;
-//     text-decoration:none;
-//     font-family:'Roboto',sans-serif;
-//     font-weight:300;
-//     color:#000000;
-//     text-align:center;
-//     transition: all 0.2s;
-//     background-color:#FFFFFF;
-// }
-
-// .AcessForm input[type="submit"]:hover {
-//     color: gray;
-// }
-// .AcessForm input[type="submit"]:active {
-//     color:#BBBBBB;
-//     border-color:#BBBBBB;
-// }
-
-
-// input[type="password"]:focus,
-// input[type="text"]:focus {
-//   box-shadow: 0 0 4px 1px rgba(55, 166, 155, 0.3);
-//   outline: 0;
-// }
-
-// .form-submit{
-//     padding: 10px;
-// }
-
-
 input[type="password"],
 input[type="text"] {
   border: 1px solid #a1a3a3;
@@ -131,3 +73,27 @@ input:focus { box-shadow: inset 0 -5px 45px rgba(100,100,100,0.4), 0 1px 1px rgb
  color: red;
 }
 
+
+
+.enter {
+  opacity: 0.1;
+  transform: scale(1.1);
+}
+
+
+.enter-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.exit {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.exit-active {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 300ms, transform 300ms;
+}
