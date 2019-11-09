@@ -1,34 +1,14 @@
 import React, { useState, useEffect, useContext } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import logo from '../img/logo.png'
-import { CSSTransition } from "react-transition-group";
 import Burger from '../img/menu-button-of-three-horizontal-lines.svg'
 import { LOGOUT_CURRENT_USER } from '../state/constants'
 import {StoreContext} from './App'
 
 export default function Header() {
   const [isNavVisible, setNavVisibility] = useState(false);
-  const [isSmallScreen, setIsSmallScreen] = useState(false);
-
+const history = useHistory();
     const { state, dispatch} = useContext(StoreContext)
-     
-  useEffect(() => {
-    const mediaQuery = window.matchMedia("(max-width: 700px)");
-    mediaQuery.addListener(handleMediaQueryChange);
-    handleMediaQueryChange(mediaQuery);
-
-    return () => {
-      mediaQuery.removeListener(handleMediaQueryChange);
-    };
-  }, []);
-
-  const handleMediaQueryChange = mediaQuery => {
-    if (mediaQuery.matches) {
-      setIsSmallScreen(true);
-    } else {
-      setIsSmallScreen(false);
-    }
-  };
 
   const toggleNav = () => {
     setNavVisibility(!isNavVisible);
@@ -38,6 +18,8 @@ export default function Header() {
             e.preventDefault()
             console.log('logout')
             dispatch({type: LOGOUT_CURRENT_USER})
+        history.push('/')
+            
     }
 
   return (
@@ -45,12 +27,6 @@ export default function Header() {
         <NavLink to='/'>
         <img src={logo} className="Logo" alt="logo" />
         </NavLink>
-      <CSSTransition
-        in={!isSmallScreen || isNavVisible}
-        timeout={350}
-        classNames="NavAnimation"
-        unmountOnExit
-      >
         <nav className="Nav">
             {state.session.currentUser ? 
             <>
@@ -64,7 +40,6 @@ export default function Header() {
             }
 
         </nav>
-      </CSSTransition>
       <img onClick={toggleNav} className="Burger"src={Burger}/>
     </header>
   );

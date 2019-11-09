@@ -33,7 +33,6 @@ const LoginForm = () => {
 
     return (
         <div className='AcessForm'>
-            <div className="form-body">
                 <div className='form-error'>
                     {state.errors.slice(0,2).map( (error, i) => (
                         <div key={i} > {error} </div>
@@ -41,7 +40,7 @@ const LoginForm = () => {
                 </div>
                 <form onSubmit={onSubmit}>
                     <div>
-                        <input id='credential' type="text" placeholder="username or email" value={credential} onChange={e => setCredential(e.target.value)} /> 
+                        <input id='credential' type="text" placeholder="username or e-mail" value={credential} onChange={e => setCredential(e.target.value)} /> 
                         <input id='password' type="password" placeholder="password" value={password} onChange={e => setPassword(e.target.value)} /> 
                     </div>
                 <div className='form-submit'>
@@ -49,7 +48,6 @@ const LoginForm = () => {
                     </div>
                 </form>
             </div>
-        </div>
     )
 }
 

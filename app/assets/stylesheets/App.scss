@@ -6,3 +6,21 @@
     height:100%;
     width: 100%;
 }
+
+.paper {
+	width: 600px;
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	top: 50%;
+	left: 50%;
+	margin: 0;
+	position: absolute;
+	background: #fefefe;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	flex-direction: column;
+	padding-bottom:30px;
+	box-shadow: 5px 10px 40px 0 rgba(0, 0, 0, 0.2);
+	border-radius: 5px;
+}

@@ -2,7 +2,6 @@ $size: 11px;
 
 .Header {
   text-decoration:none;
-  font-family:'Roboto',sans-serif;
   font-weight:250;
   font-size: $size;
   position: fixed;
@@ -21,7 +20,14 @@ $size: 11px;
   padding-left: 5px;
   justify-self: start;
   grid-area: logo;
- filter: invert(100%);
+  filter: invert(100%);
+  fill: currentColor;
+  height: auto;
+  width: auto;
+  max-height: 2.6em;
+  // height: 4em;
+  padding: 3px;
+  transition: 0.5s;
 }
 
 .Logo:hover {
@@ -30,11 +36,6 @@ $size: 11px;
     // filter: invert(42%) sepia(93%) brightness(119%) contrast(119%);
 }
 
-.Header img{
-  fill: currentColor;
-  height: 2em;
-  padding: 3px;
-}
 
 .Nav {
   display: grid;
@@ -91,40 +92,3 @@ $size: 11px;
   transform: scale(1.2);
 }
 
-@media (max-width: 700px) {
-  .Header {
-    grid-template-areas: "logo burger" "nav nav";
-  }
-  .Nav {
-    grid-template-rows: repeat(4, auto);
-    grid-template-columns: none;
-    grid-row-gap: 20px;
-
-    padding: 30px 0 30px;
-    background: rgba(40, 44, 47, 0.95);
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-  }
-  .Burger {
-    display: inline;
-  }
-}
-
-.NavAnimation-enter {
-  opacity: 0;
-  transform: scale(0.5);
-}
-.NavAnimation-enter-active {
-  opacity: 1;
-  transform: translateX(0);
-  transition: opacity 350ms, transform 350ms;
-}
-.NavAnimation-exit {
-  opacity: 1;
-}
-.NavAnimation-exit-active {
-  opacity: 0;
-  transform: scale(0.5);
-  transition: opacity 350ms, transform 350ms;
-}

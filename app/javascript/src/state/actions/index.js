@@ -2,6 +2,7 @@ import * as sessionAPI from "../../util/session_api_util";
 import * as repositoryAPI from "../../util/repository_api";
 import * as userAPI from "../../util/user_api";
 import * as rootAPI from "../../util/root_api";
+
 import {
   RECEIVE_CURRENT_USER,
   LOGOUT_CURRENT_USER,
@@ -9,8 +10,14 @@ import {
   GET_REPOSITORIES,
   DELETE_REPOSITORY,
   GET_REPOSITORY,
-  RECEIVE_USER
+  RECEIVE_USER,
+  RECEIVE_REPO_LS
 } from "../constants";
+
+export const receiveRepoLs = resp => ({
+  type: RECEIVE_REPO_LS,
+  resp
+});
 
 export const receiveCurrentUser = user => ({
   type: RECEIVE_CURRENT_USER,
@@ -109,3 +116,8 @@ export const getReposByUsername = username => dispatch =>
     .getUserRepos(username)
     .then(resp => dispatch(receiveUser(resp)))
     .catch(resp => dispatch(receiveErrors(resp)));
+
+export const getRepoLs = (username, reponame) => dispatch =>
+  repositoryAPI
+    .getRepoLs(username, reponame)
+    .then(resp => dispatch(receiveRepoLs(resp)));

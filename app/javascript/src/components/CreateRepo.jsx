@@ -48,7 +48,7 @@ const CreateForm = () =>{
                         onChange={e => setDescription(e.target.value)}
                     /> 
                 </div>
-                <div className='form-submit'>
+                <div className='form-submit create-repo'>
                     <input type="submit" value="Create repository"/>
                 </div>
             </form>

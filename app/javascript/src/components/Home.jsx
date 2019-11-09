@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import {StoreContext} from './App'
 
+const welcomeText = 'GitMonkey is a GitHub clone\n, web application version control using Git.'
 
  const Home = () => {
     const { state } = useContext(StoreContext)
@@ -13,6 +14,9 @@ import {StoreContext} from './App'
             </div>
         </div>
 
+        <div style={{paddingTop: '0.1em'}}>
+            <p style={{textAlign: 'center'}}> {welcomeText} </p>
+        </div>
     </div>
     )
 }

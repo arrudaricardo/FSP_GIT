@@ -6,7 +6,8 @@ import {
   GET_REPOSITORY,
   GET_REPOSITORIES,
   DELETE_REPOSITORY,
-  RECEIVE_USER
+  RECEIVE_USER,
+  RECEIVE_REPO_LS
 } from "../constants";
 
 const reducer = (state = {}, action) => {
@@ -60,6 +61,13 @@ const reducer = (state = {}, action) => {
 
     case DELETE_REPOSITORY:
       delete newState.entities.repositories[action.repoId];
+      return newState;
+
+    case RECEIVE_REPO_LS:
+      // action.resp.data.username;
+      // action.resp.data.reponame;
+      // action.resp.data.ls;
+      //   newState.entities.repositories.
       return newState;
 
     default:

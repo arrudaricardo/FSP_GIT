@@ -24,3 +24,18 @@ export const deleteRepo = repoId => axios.delete(`/api/repositories/${repoId}`);
 
 export const getRepoName = repoName =>
   axios.get(`/api/username/${repoName.username}/repo/${repoName.repo_name}`);
+
+export const getRepoLs = (username, reponame) =>
+  axios.get(`/api/ls/${username}/${reponame}`);
+// exemple
+// {
+//     "username": "ricardo",
+//     "reponame": "test",
+//     "ls": [
+//         "README.md",
+//         "aaaa.js",
+//         "afolder/afle.js",
+//         "afolder/hello.js",
+//         "afolder/poke/pika.js"
+//     ]
+// }

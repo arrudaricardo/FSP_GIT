@@ -15,6 +15,9 @@ Rails.application.routes.draw do
     end
 
 
+    # return a string with all files and folders  
+    get 'ls/:username/:reponame', to: 'repositories#repo_files_tree'
+
     get 'test/', to: 'root#test'
 
     # post 'getUserByUsername' to: 'user#showByUsername'

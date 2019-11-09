@@ -66,15 +66,12 @@ class Api::RepositoriesController < ApplicationController
     params.require(:repository).permit(:name,:description)
   end
 
+
+def repo_files_tree
+    @username = params[:username]
+    @reponame = params[:reponame] 
+    @ls = Repository.ls_files_tree(@username, @reponame)
+    render :repols
 end
 
-  # def self.find_by_username_reponame(username, repo_name)
-  #   # User.where("username = ? AND repo")
-  #   user = User.find_by(username: username).includes(:repositories)
-  #   ret =  user.repositories.select do |repo| 
-  #       repo.name == repo_name
-  #   end
-
-  #   return ret 
-
-  # end
+end
