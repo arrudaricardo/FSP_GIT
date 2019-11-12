@@ -64,10 +64,11 @@ const reducer = (state = {}, action) => {
       return newState;
 
     case RECEIVE_REPO_LS:
-      // action.resp.data.username;
-      // action.resp.data.reponame;
+      // {"owner":{"id":1,"username":"ricardo"},"repository":{"id":4,"name":"banana","description":"i love banana"},"ls":[]}
+      action.resp.data.id;
       // action.resp.data.ls;
-      //   newState.entities.repositories.
+      //   newState.entities.repositories[]
+
       return newState;
 
     default:

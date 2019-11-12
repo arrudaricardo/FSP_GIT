@@ -12,7 +12,9 @@
 
 class Repository < ApplicationRecord
   validates :name, :owner_id, presence: true
+  validates :name, uniqueness: {scope: :owner_id}
   validates :name, length: {minimum: 4, maximum: 15}
+  validates :name, format: { with: /\A[a-zA-Z0-9]+\Z/ }
   validates :description, length: {maximum: 35}, allow_blank: true
 
 
@@ -33,6 +35,18 @@ class Repository < ApplicationRecord
   def self.git_init_bare(username, reponame)
       path = "storage/#{username}/#{reponame}/"
       return `git init --bare #{path}`
+  end
+
+  def self.git_init(username, reponame)
+      path = "storage/#{username}/#{reponame}/"
+      return `git init #{path}`
+  end
+
+  def self.git_add_readme(username, reponame, readme)
+      path = "storage/#{username}/#{reponame}/"
+      out = `echo #{readme} >> path#{README.md}`
+      out = `git -C #{readme} add README.md`
+      out = `git -C #{readme} commit -m 'first commit'`
   end
 
   def self.delete_repo(username, reponame)

@@ -25,3 +25,20 @@
 	border-radius: 5px;
 }
 
+.card{
+  opacity: 0.1;
+  width: 350px;
+  padding: 30px;
+  background: #fefefe;
+  margin: auto;
+  transition: .3s ease;
+  box-shadow: 0 1px 1px rgba(0,0,0,.3);
+  
+  &:hover {
+    box-shadow: 0 5px 20px rgba(0,0,0,.8);
+    transform: translateY(-10px) scale(1.02);
+  	.entry-title{
+			background-position: -100% 0;
+		} 
+  }
+}

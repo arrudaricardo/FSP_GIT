@@ -8,8 +8,10 @@ const CreateForm = () =>{
     let history = useHistory();
 
     const [name, setName] = useState('')
+    const [readme, setReadme] = useState(true)
     const [description, setDescription] = useState('')
     const { state, dispatch} = useContext(StoreContext)
+    const [repoSize, setRepoSize] = useState(Object.keys(state.entities.repositories).length)
 
     // Clear error when unmont
     useEffect(()=>{
@@ -21,17 +23,23 @@ const CreateForm = () =>{
 
     const handleSubmit = async e => {
         e.preventDefault();
-        createRepo({repository:{name, description }})(dispatch);
-        history.push(`/user/${state.session.currentUser.username}/${name}`)
-
+        createRepo({repository:{name, description, readme }})(dispatch);
     }
-    
-    
 
+    useEffect( () => {
+
+        if (repoSize  + 1 === Object.keys(state.entities.repositories).length ){
+            history.push(`/user/${state.session.currentUser.username}/${name}`)
+        }
+    },[Object.keys(state.entities.repositories)])
+    
     return (
         <div className='AcessForm'> 
             <div className="form-body">
             <div className='form-error'>
+                {state.errors.slice(0,2).map( (error, i) => (
+                    <div key={i} > {error} </div>
+                ))}
             </div>
             <form onSubmit={handleSubmit}>
                 <div>
@@ -47,6 +55,10 @@ const CreateForm = () =>{
                         value={description} 
                         onChange={e => setDescription(e.target.value)}
                     /> 
+                    <div>
+                        <input type="checkbox" onChange={() => setReadme(prev => !prev)} defaultChecked={readme}/>
+                    <p>Initialize README</p>
+                  </div>
                 </div>
                 <div className='form-submit create-repo'>
                     <input type="submit" value="Create repository"/>

@@ -1,41 +1,99 @@
 .repository {
-    display:flex;
+    // display: flex;
     justify-content: center;
+    margin-top: 1em;
+    margin: 3em;
 
 }
-
 .repo-container {
-    margin-top: 3em;
-    width: 9em;
+    display:flex;
+    // flex-direction: column;
+    align-content: center;
+    // margin-top: 3em;
+    // width: 9em;
     // display: inline-flex;
-    // align-content: center;
     // justify-content: center;
+}
 
+.repo-container label{
+    padding: 0.1em;
 }
 
 .repo-info {
-    display: flex;
-    align-content: center;
-    flex-direction: column;
+    margin-left: 30%;
+    margin-right: 30%;
+    // justify-content: center;
+    // align-content: center;
+    // flex-direction: column;
 }
 
 
     .repo-info-description{
 
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
     }
 
     .repo-info-name {
+        font-weight: bold;
         padding-bottom: 10px;
 
-        display: flex;
-        flex-direction: row;
+        div {
+            text-align: center;
+        }
     }
 
+.info-repo {
+    display:flex;
+    padding-top: 3em;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center; 
+    border-top-color: transparent;
 
-
-
-.repo-body {
-    margin-top: 4em;
 }
+.info-repo span {
+    font-size: 14px!important;
+    display: block;
+}
+
+.info-container{
+    border-top-color: transparent;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    padding: 1.2em;
+}
+
+.info-repo-display {
+    position: relative;
+    padding: 10px 55px 10px 10px;
+    background: rgba(204, 204, 204, 0.1);
+    border-radius: 4px;
+}
+
+.delete-repo {
+    padding-top: 1em;
+    float: right;
+}
+
+.deleteRepoBtn { 
+	margin-bottom: 10px; 
+	background: rgba(0,0,0,0.3);
+	border: none;
+	outline: none;
+	padding: 8px;
+	font-size: 12px;
+	color: #fff;
+	text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+	border: 1px solid rgba(0,0,0,0.3);
+	border-radius: 4px;
+	box-shadow: inset 0 -5px 45px rgba(100,100,100,0.2), 0 1px 1px rgba(255,255,255,0.2);
+	-webkit-transition: box-shadow .5s ease;
+	-moz-transition: box-shadow .5s ease;
+	-o-transition: box-shadow .5s ease;
+	-ms-transition: box-shadow .5s ease;
+	transition: box-shadow .5s ease;
+}
+.deleteRepoBtn:focus { box-shadow: inset 0 -5px 45px rgba(100,100,100,0.4), 0 1px 1px rgba(255,255,255,0.2); }
+
+

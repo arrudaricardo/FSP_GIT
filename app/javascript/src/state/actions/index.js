@@ -2,6 +2,7 @@ import * as sessionAPI from "../../util/session_api_util";
 import * as repositoryAPI from "../../util/repository_api";
 import * as userAPI from "../../util/user_api";
 import * as rootAPI from "../../util/root_api";
+import * as issueAPI from "../../util/issue_api";
 
 import {
   RECEIVE_CURRENT_USER,
@@ -11,8 +12,20 @@ import {
   DELETE_REPOSITORY,
   GET_REPOSITORY,
   RECEIVE_USER,
-  RECEIVE_REPO_LS
+  RECEIVE_REPO_LS,
+  RECEIVE_ISSUE,
+  RECEIVE_ISSUES
 } from "../constants";
+
+export const receiveIssue = resp => ({
+  type: RECEIVE_ISSUE,
+  resp
+});
+
+export const receiveIssues = resp => ({
+  type: RECEIVE_ISSUES,
+  resp
+});
 
 export const receiveRepoLs = resp => ({
   type: RECEIVE_REPO_LS,
@@ -121,3 +134,23 @@ export const getRepoLs = (username, reponame) => dispatch =>
   repositoryAPI
     .getRepoLs(username, reponame)
     .then(resp => dispatch(receiveRepoLs(resp)));
+
+//Issues
+export const createIssue = (issue, repoId) => dispatch =>
+  issueAPI
+    .createIssue(issue, repoId)
+    .then(resp => dispatch(receiveIssue(resp)))
+    .catch(resp => dispatch(receiveErrors(resp)))
+
+export const getIssue = (repoId, issueId) => dispatch =>
+  issueAPI
+    .getIssue(repoId, issueId)
+    .then(resp => dispatch(receiveIssue(resp)))
+    .catch(resp => dispatch(receiveErrors(resp)))
+
+export const getIssues = repoId => dispatch =>
+  issueAPI
+    .getIssues(repoId)
+    .then(resp => dispatch(receiveIssues(resp)))
+    .catch(resp => dispatch(receiveErrors(resp)))
+
