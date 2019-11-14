@@ -10,7 +10,8 @@ import {
   RECEIVE_REPO_LS,
   RECEIVE_ISSUE,
   RECEIVE_ISSUES,
-  TOGGLE_LOADING
+  TOGGLE_LOADING,
+  RECEIVE_COMMENTS
 } from "../constants";
 
 const reducer = (state = {}, action) => {
@@ -82,6 +83,16 @@ const reducer = (state = {}, action) => {
       newState.entities.repositories[action.resp.data.repository_id].issues = {
         [action.resp.data.id]: action.resp.data
       };
+      newState.ui.loading = false;
+      return newState;
+
+    case RECEIVE_COMMENTS:
+      if (Object.keys(action.resp.data).length > 0) {
+        newState.entities.repositories[
+          action.resp.data.meta.repository_id
+        ].issues[action.resp.data.meta.issue_id].comments =
+          action.resp.data.comments;
+      }
       newState.ui.loading = false;
       return newState;
 

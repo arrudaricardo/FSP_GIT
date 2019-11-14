@@ -3,7 +3,7 @@ class Api::IssuesController < ApplicationController
   def create 
     @issue = Issue.new(issue_params)
     @issue.repo_id = params[ :repository_id ]
-    @issue.author_id = 1 #current_user.id
+    @issue.author_id = current_user.id
     if @issue.save
       render :show
     else 

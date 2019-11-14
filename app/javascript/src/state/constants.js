@@ -9,6 +9,8 @@ export const TOGGLE_LOADING = "TOGGLE_LOADING";
 
 export const RECEIVE_REPO_LS = "RECEIVE_REPO_LS";
 
+export const RECEIVE_COMMENTS = "RECEIVE_COMMENTS";
+
 export const RECEIVE_ISSUE = "RECEIVE_ISSUE";
 export const RECEIVE_ISSUES = "RECEIVE_ISSUE";
 

@@ -3,6 +3,7 @@ import * as repositoryAPI from "../../util/repository_api";
 import * as userAPI from "../../util/user_api";
 import * as rootAPI from "../../util/root_api";
 import * as issueAPI from "../../util/issue_api";
+import * as commentAPI from "../../util/comment_api";
 
 import {
   RECEIVE_CURRENT_USER,
@@ -14,11 +15,17 @@ import {
   RECEIVE_USER,
   RECEIVE_REPO_LS,
   RECEIVE_ISSUE,
-  RECEIVE_ISSUES
+  RECEIVE_ISSUES,
+  RECEIVE_COMMENTS
 } from "../constants";
 
 export const receiveIssue = resp => ({
   type: RECEIVE_ISSUE,
+  resp
+});
+
+export const receiveComments = resp => ({
+  type: RECEIVE_COMMENTS,
   resp
 });
 
@@ -152,4 +159,17 @@ export const getIssues = repoId => dispatch =>
   issueAPI
     .getIssues(repoId)
     .then(resp => dispatch(receiveIssues(resp)))
+    .catch(resp => dispatch(receiveErrors(resp)));
+//comments
+//
+export const createComments = (data, repoId, issueId) => dispatch =>
+  commentAPI
+    .createComment(data, repoId, issueId)
+    .then(resp => dispatch(receiveComments(resp)))
+    .catch(resp => dispatch(receiveErrors(resp)));
+
+export const getComments = (repoId, issueId) => dispatch =>
+  commentAPI
+    .getComments(repoId, issueId)
+    .then(resp => dispatch(receiveComments(resp)))
     .catch(resp => dispatch(receiveErrors(resp)));

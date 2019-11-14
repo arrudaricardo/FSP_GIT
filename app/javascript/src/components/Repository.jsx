@@ -15,7 +15,6 @@ const Respository = () => {
     const {state, dispatch} = useContext(StoreContext)
 
     useEffect( ()=> {
-    console.log(username, repo_name)
         getRepoByUsername(username, repo_name)(dispatch)
     },[])
 

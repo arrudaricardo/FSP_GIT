@@ -11,7 +11,7 @@
 #
 
 class Comment < ApplicationRecord
-  validates :issue_id, :user_id, :body, presence: true
+  validates :issue_id, :repository_id, :user_id, :body, presence: true
 
   belongs_to :user,
     class_name: 'User',
@@ -22,5 +22,9 @@ class Comment < ApplicationRecord
     class_name: 'Issue',
     foreign_key: :issue_id,
     primary_key: :id
+
+  has_one :repository,
+   through: :issue
+
 
 end

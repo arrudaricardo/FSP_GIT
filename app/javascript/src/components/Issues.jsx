@@ -7,9 +7,7 @@ import {StoreContext} from './App'
 const Issues = ({repo}) => {
 
     const {state, dispatch} = useContext(StoreContext)
-    useEffect( () => {
-           let a = Object.values(state.entities.repositories[repo.id].issues)
-    }, )
+
 
     return (
     <div>
@@ -17,8 +15,8 @@ const Issues = ({repo}) => {
         <div className='create-issue-header'>
             <Link className='create-issue-btn' to={`createissue`}>Create Issue</Link>
         </div>
-
         <div className='issues-list'>
+        { (repo && state.entities.repositories[repo.id].issues) && 
             <ul className='issue-ul'>
                 {Object.values(state.entities.repositories[repo.id].issues).map( ({title}) => (
                     <li key={title}>
@@ -26,8 +24,8 @@ const Issues = ({repo}) => {
                     </li>
                 )) 
                 }
-
             </ul>
+            }
         </div>
     </div>
 
