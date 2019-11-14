@@ -5,6 +5,8 @@ export const CLEAR_ERRORS = "CLEAR_ERRORS";
 
 export const RECEIVE_USER = "RECEIVE_USER";
 
+export const TOGGLE_LOADING = "TOGGLE_LOADING";
+
 export const RECEIVE_REPO_LS = "RECEIVE_REPO_LS";
 
 export const RECEIVE_ISSUE = "RECEIVE_ISSUE";

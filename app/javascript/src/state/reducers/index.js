@@ -7,7 +7,10 @@ import {
   GET_REPOSITORIES,
   DELETE_REPOSITORY,
   RECEIVE_USER,
-  RECEIVE_REPO_LS
+  RECEIVE_REPO_LS,
+  RECEIVE_ISSUE,
+  RECEIVE_ISSUES,
+  TOGGLE_LOADING
 } from "../constants";
 
 const reducer = (state = {}, action) => {
@@ -26,12 +29,17 @@ const reducer = (state = {}, action) => {
 
       return newState;
 
+    case TOGGLE_LOADING:
+      newState.ui.loading = action.payload;
+      return newState;
+
     case LOGOUT_CURRENT_USER:
       newState.session.currentUser = null;
       return newState;
 
     case RECEIVE_SESSION_ERRORS:
       newState.errors.push(action.error.response.data);
+      newState.ui.loading = false;
       return newState;
 
     case CLEAR_ERRORS:
@@ -68,7 +76,13 @@ const reducer = (state = {}, action) => {
       action.resp.data.id;
       // action.resp.data.ls;
       //   newState.entities.repositories[]
+      return newState;
 
+    case RECEIVE_ISSUE:
+      newState.entities.repositories[action.resp.data.repository_id].issues = {
+        [action.resp.data.id]: action.resp.data
+      };
+      newState.ui.loading = false;
       return newState;
 
     default:
@@ -77,4 +91,3 @@ const reducer = (state = {}, action) => {
 };
 
 export default reducer;
-

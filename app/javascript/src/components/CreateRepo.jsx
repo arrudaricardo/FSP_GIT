@@ -29,7 +29,7 @@ const CreateForm = () =>{
     useEffect( () => {
 
         if (repoSize  + 1 === Object.keys(state.entities.repositories).length ){
-            history.push(`/user/${state.session.currentUser.username}/${name}`)
+            history.push(`/${state.session.currentUser.username}/${name}`)
         }
     },[Object.keys(state.entities.repositories)])
     

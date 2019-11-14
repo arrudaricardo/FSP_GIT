@@ -140,17 +140,16 @@ export const createIssue = (issue, repoId) => dispatch =>
   issueAPI
     .createIssue(issue, repoId)
     .then(resp => dispatch(receiveIssue(resp)))
-    .catch(resp => dispatch(receiveErrors(resp)))
+    .catch(resp => dispatch(receiveErrors(resp)));
 
 export const getIssue = (repoId, issueId) => dispatch =>
   issueAPI
     .getIssue(repoId, issueId)
     .then(resp => dispatch(receiveIssue(resp)))
-    .catch(resp => dispatch(receiveErrors(resp)))
+    .catch(resp => dispatch(receiveErrors(resp)));
 
 export const getIssues = repoId => dispatch =>
   issueAPI
     .getIssues(repoId)
     .then(resp => dispatch(receiveIssues(resp)))
-    .catch(resp => dispatch(receiveErrors(resp)))
-
+    .catch(resp => dispatch(receiveErrors(resp)));

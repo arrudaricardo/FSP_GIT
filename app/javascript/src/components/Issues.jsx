@@ -1,9 +1,15 @@
-import React from 'react'
+import React,{useContext, useEffect} from 'react'
 import IssueFrom from './IssueForm'
 import Issue from './Issue'
 import {Link} from 'react-router-dom'
+import {StoreContext} from './App'
 
-const Issues = ({username, repo_name, repo}) => {
+const Issues = ({repo}) => {
+
+    const {state, dispatch} = useContext(StoreContext)
+    useEffect( () => {
+           let a = Object.values(state.entities.repositories[repo.id].issues)
+    }, )
 
     return (
     <div>
@@ -12,11 +18,16 @@ const Issues = ({username, repo_name, repo}) => {
             <Link className='create-issue-btn' to={`createissue`}>Create Issue</Link>
         </div>
 
-        <div> 
-            <h1>Issues from {repo_name}</h1>
-        </div>
+        <div className='issues-list'>
+            <ul className='issue-ul'>
+                {Object.values(state.entities.repositories[repo.id].issues).map( ({title}) => (
+                    <li key={title}>
+                        <Link to={`issue/${title}`}>{title}</Link>
+                    </li>
+                )) 
+                }
 
-        <div create-issue-issues>
+            </ul>
         </div>
     </div>
 

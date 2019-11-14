@@ -4,8 +4,10 @@ import axios from "axios";
 // api/issues#create {:format=>:json}
 //localhost:3000/api/repositories/2/issues?issue[title]=new Issue&issue[body]=issue body
 // data issue[title] issue[body]
-export const createIssue = (data, repoId) =>
-  axios.post(`/api/repositories/${repoId}/issues`, data);
+//
+export const createIssue = (data, repoId) => {
+  return axios.post(`/api/repositories/${repoId}/issues`, data);
+};
 
 //localhost:3000/api/repositories/2/issues
 //response: [{"id":1,"title":"new Issue","body":"issue body","owner":"ricardo","owner_id":1,"repository":"Test Name","repository_id":2}]

@@ -3,7 +3,7 @@
 	background: rgba(0,0,0,0.3);
 	border: none;
 	outline: none;
-	font-size: 13px;
+	font-size: 11px;
 	color: #fff;
 	text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
 	border: 1px solid rgba(0,0,0,0.3);
@@ -28,18 +28,37 @@
 }
 
 
+.issues-list {
 
-.info-repo {
-    display:flex;
     padding-top: 3em;
-    flex-direction: column;
-    align-content: center;
+    // flex-direction: column;
+    display: flex;
     justify-content: center; 
-    border-top-color: transparent;
+    // border-top-color: transparent;
+    // margin: auto;
+}
 
+.issues-list li {
+    text-align: center;
+    margin: 0.2em;
+	color: #fff;
+	text-shadow: 1px 1px 1px rgba(200,200,200,0.2);
+}
+
+
+.issue-ul {
+     justify-content: center;
+     flex-direction: column;
+      display: flex;
+    text-justify: center;
+}
+.issues-list a {
+    padding: 3px;
+    font-size: 19px;
 }
 .info-repo span {
     font-size: 14px!important;
     display: block;
 }
+
 

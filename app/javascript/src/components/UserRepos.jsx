@@ -17,6 +17,7 @@ const UserRepos = () => {
     return (
         <>
         <div className='repo-list'>
+        <h1> {`${username} Repositories`} </h1>
             <div className='repo-list-item'>
             {state.entities.users[username] && state.entities.users[username].repositories.map( e => (
                 <div className="repo-container" key={e.id}> 

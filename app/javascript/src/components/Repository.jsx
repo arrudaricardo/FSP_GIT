@@ -7,6 +7,7 @@ import {getRepoLs} from '../state/actions/index'
 import Code from './Code'
 import IssueForm from './IssueForm.jsx'
 import Issues from './Issues'
+import Issue from './Issue'
 
 const Respository = () => {
     const { username, repo_name } = useParams();
@@ -86,6 +87,16 @@ const Respository = () => {
                 <>
                 {repo && <IssueForm
 
+                username={username}
+                repo_name={repo_name} 
+                repo={repo}
+                />
+                }
+               </>
+            </Route>
+            <Route exact path={`/${username}/${repo_name}/issue/:title`}> 
+                <>
+                {repo && <Issue 
                 username={username}
                 repo_name={repo_name} 
                 repo={repo}

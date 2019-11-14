@@ -1,7 +1,8 @@
 import React,{useState, useContext, useEffect} from 'react';
 import {StoreContext} from './App'
-import { CLEAR_ERRORS } from '../state/constants.js'
-import {createIssue } from '../state/actions/index'
+import { CLEAR_ERRORS, TOGGLE_LOADING } from '../state/constants.js'
+import { createIssue } from '../state/actions/index'
+
 import { useHistory, useParams } from "react-router-dom";
 import {getRepoByUsername} from '../state/actions/index'
 
@@ -22,29 +23,32 @@ const IssueForm = ({username, repo_name, repo}) => {
     },[])
 
      useEffect( () => {
-        getRepoByUsername(username, repo_name)(dispatch)
-    },[])
+         if (typeof repo === undefined){
+            getRepoByUsername(username, repo_name)(dispatch)
+         }
+    }, [] )
 
 
-    // const getRepoId = () => {
-    // let repos = Object.values(state.entities.repositories)
-    //     repos.forEach( el => {
-    //         if (el.owner === username) {
-    //             setRepo(el)
-    //         }
-    //     } )
-    // }
-    //
-     // useEffect( () => {
-     //     if (!repo) {
-     //        getRepoId();
-     //     }
-    // })
+    // check if title includes in repo.issues.title
+     useEffect( () => {
+
+         let issues = state.entities.repositories[repo.id].issues
+         let newTitle = title
+         let checkTitle = issues ? Object.values(issues).some( ({title}) => title === newTitle ): false
+
+         console.log(checkTitle)
+         if (checkTitle) {
+             history.push(`/${username}/${repo_name}/issue/${title}`)
+         }
+        
+    }, [state.entities.repositories[repo.id].issues ] )
+
 
 
     const onSubmit = async e => {
         e.preventDefault();
-        createIssue({title,body},repo.id)
+        dispatch({type: TOGGLE_LOADING, payload: true})   
+        createIssue({title,body}, repo.id)(dispatch)
       };
 
     return (
@@ -52,11 +56,6 @@ const IssueForm = ({username, repo_name, repo}) => {
         {repo ? 
         <div className="AcessForm">
             <div className="form-body">
-                <div className='form-error'>
-                    {state.errors.length > 0 && state.errors.slice(-1)[0].map( (error, i) => (
-                        <div key={i} > {error} </div>
-                    ))}
-                </div>
             <form onSubmit={onSubmit}>
                 <div className='inputs'>
                     <input type="text" placeholder="Title" value={title} onChange={e => setTitle(e.target.value)} /> 

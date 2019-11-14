@@ -14,6 +14,7 @@
 
 class Issue < ApplicationRecord
   validates :repo_id, :author_id, :title, :body, presence: true
+  validates :title, uniqueness: {scope: :repo_id}
 
   belongs_to :user,
     class_name: 'User',

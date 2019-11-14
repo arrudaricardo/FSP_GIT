@@ -4,7 +4,6 @@ class Api::IssuesController < ApplicationController
     @issue = Issue.new(issue_params)
     @issue.repo_id = params[ :repository_id ]
     @issue.author_id = 1 #current_user.id
-    debugger
     if @issue.save
       render :show
     else 
