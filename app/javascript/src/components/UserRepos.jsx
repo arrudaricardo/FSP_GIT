@@ -8,6 +8,7 @@ const UserRepos = () => {
     // const [userRepos, setUserRepos] = useState([])
     const {state, dispatch} = useContext(StoreContext)
 
+    console.log(username)
     useEffect(()=> {
         //TODO: fetch if user not found
         getReposByUsername(username)(dispatch)
@@ -19,7 +20,7 @@ const UserRepos = () => {
             <div className='repo-list-item'>
             {state.entities.users[username] && state.entities.users[username].repositories.map( e => (
                 <div className="repo-container" key={e.id}> 
-                    <Link to={`/user/${username}/${e.name}`} className="repo-list-item-name"> {e.name} </Link>
+                    <Link to={`/${username}/${e.name}`} className="repo-list-item-name"> {e.name} </Link>
                     <div className="repo-list-item-description"> {e.description} </div>
                 </div>
             ) )}

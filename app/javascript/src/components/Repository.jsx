@@ -1,17 +1,20 @@
 import React, {useContext, useState, useEffect} from 'react'
 import {StoreContext} from './App'
+import {Route, NavLink, Switch} from 'react-router-dom'
 import {useParams} from 'react-router-dom'
-import {getRepoByUsername, deleteRepo } from '../state/actions/index'
+import {getRepoByUsername} from '../state/actions/index'
 import {getRepoLs} from '../state/actions/index'
-import { useHistory } from "react-router-dom";
+import Code from './Code'
+import IssueForm from './IssueForm.jsx'
+import Issues from './Issues'
 
 const Respository = () => {
-    let history = useHistory();
     const { username, repo_name } = useParams();
     const [repo, setRepo] = useState(null)
     const {state, dispatch} = useContext(StoreContext)
 
     useEffect( ()=> {
+    console.log(username, repo_name)
         getRepoByUsername(username, repo_name)(dispatch)
     },[])
 
@@ -25,15 +28,26 @@ const Respository = () => {
         getRepoLs(username, repo_name)
     }  )
 
-    const handleDelete = () => {
-        // get repo id by user/reponame
-        //entities.users.ricardo.repositories
-        let repo = Object.values(state.entities.users[username].repositories).filter(e => e.name === repo_name)
-        deleteRepo(repo.id)(dispatch)
-        history.push('/') 
+    const navStyle = {
+        fontWeight: "bold",
+        color: "gray"
     }
 
     return (
+    <>
+        <div style={{ display: 'inline-flex' }}>
+          <div style={{
+            paddingTop: '3em',
+            // width: '40%',
+          }}>
+            <ul style={{display: 'inline-flex', listStyleType: 'none', padding: 6 }}>
+                <li style={{paddingRight: '0.4em'}}><NavLink activeStyle={navStyle} exact to={`/${username}/${repo_name}/`}>Code</NavLink></li>
+                <li ><NavLink activeStyle={navStyle} to={`/${username}/${repo_name}/issues`}>Issues</NavLink></li>
+            </ul>
+
+          </div>
+        </div>
+
         <div className='repository'>
 
             <div className='form-error'>
@@ -41,51 +55,50 @@ const Respository = () => {
                     <div key={i} > {error} </div>
                 ))}
             </div>
-            { repo &&  
-                    (<div className='repo-container'> 
-                        <div className='repo-info'> 
-
-                            <label className="repo-info-name">
-                                <div> {repo.name} </div>
-                            </label>
-
-                            <label className='repo-info-description'> 
-                                <div> {repo.description} </div>
-                            </label>
 
 
-                        </div> 
-                    </div>) 
-            } 
-                <div className='info-repo'>
-
-                    <div className='info-container'>
-                        <div className='info-repo-display'> 
-                            <span >git init</span>
-                            <span >git add README.md</span>
-                            <span >git commit -m "first commit"</span>
-                            <span >git remote add origin http://localhost:3000/{username}/{repo_name}</span>
-                            <span >git push -u origin master</span>
-                        </div>
-                    </div>
-
-                    <div className='info-container'>
-                    <div className='info-repo-display'> 
-                        <span >git init</span>
-                        <span >git add README.md</span>
-                        <span >git commit -m 'first commit'</span>
-                        <span >git remote add origin https://localhost:3000/{username}/{repo_name}.git</span>
-                        <span >git push -u origin master</span>
-                    </div>
-                </div>
-                </div>
-
-                {state.entities.users[username] && 
-                    <div className='delete-repo'>
-                        <button className='deleteRepoBtn' onClick={handleDelete} >Delete Respository</button>
-                    </div>
+            <div className='Container'>
+            <Switch>
+                <Route exact path={`/${username}/${repo_name}/`}> 
+                <>
+                {repo && <Code 
+                username={username}
+                repo_name={repo_name} 
+                repo={repo}
+                />
                 }
+               </>
+            </Route>
+
+
+                <Route path={`/${username}/${repo_name}/issues`}> 
+                <>
+                {repo && <Issues 
+                username={username}
+                repo_name={repo_name} 
+                repo={repo}
+                />
+                }
+               </>
+            </Route>
+
+            <Route path={`/${username}/${repo_name}/createissue`}> 
+                <>
+                {repo && <IssueForm
+
+                username={username}
+                repo_name={repo_name} 
+                repo={repo}
+                />
+                }
+               </>
+            </Route>
+        </Switch>
+            </div>
+
+            
         </div>
+    </>
     )
 }
 

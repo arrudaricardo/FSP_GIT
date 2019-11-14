@@ -30,7 +30,7 @@ const history = useHistory();
         <nav className="Nav">
             {state.session.currentUser ? 
             <>
-                <NavLink to={`/user/${state.session.currentUser.username}`}>My Repos</NavLink> 
+                <NavLink to={`/${state.session.currentUser.username}/`}>My Repos</NavLink> 
                 <NavLink to="/create">Create Repo</NavLink>
                 <button onClick={handleLogout}>Logout</button>
             </>

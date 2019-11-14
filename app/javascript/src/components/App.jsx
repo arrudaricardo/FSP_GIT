@@ -1,12 +1,12 @@
 import React, {useReducer, createContext, useEffect} from 'react'
 import reducer from '../state/reducers/index'
-import { HashRouter, Route, Switch } from "react-router-dom";
+import { HashRouter, Route, Switch, BrowserRouter } from "react-router-dom";
+import IssueForm from './IssueForm'
 import Header from './Header'
 import LoginForm from './LoginForm'
 import CreateForm from './CreateForm'
 import Home from './Home'
 import CreateRepo from './CreateRepo'
-import RepoContainer from './RepoContainer'
 import UserRepos from './UserRepos'
 import Repository from './Repository'
 import { CSSTransition } from 'react-transition-group'
@@ -53,7 +53,7 @@ const App = () => {
 
                    <Header/>
                    {routes.map( ({path, Component},i) => (
-                       <Route key={i} exact path={path}>
+                       <Route key={i} strict exact path={path}>
                            {( {match } ) => (
                                <CSSTransition
                                in={match != null}
@@ -70,16 +70,15 @@ const App = () => {
 
                    ) )}
 
-                       <Switch>  
+               <Switch> 
+                <Route  path={`/:username/:repo_name`}
+                component={Repository}
+                />
 
-                       <Route exact path="/user/:username" >
-                           <RepoContainer/>
-                       </Route>
-
-                       <Route exact path="/user/:username/:repo_name" >
-                           <Repository/>
-                       </Route>
-                    </Switch>
+                <Route exact strict path={`/:username/`}
+                component={UserRepos}
+                />
+               </Switch>
 
                 </div>
             </StoreContext.Provider>
