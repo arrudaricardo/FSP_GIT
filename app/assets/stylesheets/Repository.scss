@@ -56,8 +56,8 @@
 }
 
 .repo-info {
-    margin-left: 30%;
-    margin-right: 30%;
+    // margin-left: 30%;
+    // margin-right: 30%;
     // justify-content: center;
     // align-content: center;
     // flex-direction: column;
@@ -72,7 +72,8 @@
 
     .repo-info-name {
         font-weight: bold;
-        padding-bottom: 10px;
+        font-size: 35px;
+        padding-bottom: 2em;
 
         div {
             text-align: center;
@@ -134,3 +135,17 @@
 .deleteRepoBtn:focus { box-shadow: inset 0 -5px 45px rgba(100,100,100,0.4), 0 1px 1px rgba(255,255,255,0.2); }
 
 
+
+.repo-bar-container {
+    width: 100%;
+    padding: 8px;
+      display: flex;
+      justify-content: flex-start;
+    padding-top: 3.8em;
+
+}
+
+
+.repo-bar-ul {
+    font-size: 1.8em;
+}

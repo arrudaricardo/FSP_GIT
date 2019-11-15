@@ -35,20 +35,13 @@ const Respository = () => {
 
     return (
     <>
-        <div style={{ display: 'inline-flex', width: '100%', justifyContent: 'start' }}>
-          <div style={{
-              display: 'flex',
-              justifyContent: 'flex-start',
-            paddingTop: '3.1em',
-            // width: '40%',
-          }}>
-            <ul style={{display: 'inline-flex', listStyleType: 'none', padding: 6 }}>
+          <div className='repo-bar-container' >
+            <ul className='repo-bar-ul' style={{display: 'inline-flex', listStyleType: 'none', padding: 6 }}>
                 <li style={{paddingRight: '0.4em'}}><NavLink activeStyle={navStyle} exact to={`/${username}/${repo_name}/`}>Code</NavLink></li>
                 <li ><NavLink activeStyle={navStyle} to={`/${username}/${repo_name}/issues`}>Issues</NavLink></li>
             </ul>
 
           </div>
-        </div>
 
         <div className='repository'>
 

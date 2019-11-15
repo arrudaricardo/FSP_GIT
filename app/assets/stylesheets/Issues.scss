@@ -26,6 +26,10 @@
 
 }
 
+.issues-h1 {
+    font-size: 33px;
+}
+
 .create-issue-header {
     align-content: top;
     display: flex;
@@ -68,15 +72,15 @@
 
 .issue-ul {
     overflow: scroll;
-    max-height: 29em;
+    max-height: 22em;
      justify-content: center;
      flex-direction: column;
-      display: flex;
+      // display: flex;
     text-justify: center;
+    font-size: 30px;
 }
 .issues-list a {
     padding: 3px;
-    font-size: 19px;
 }
 .info-repo span {
     font-size: 14px!important;

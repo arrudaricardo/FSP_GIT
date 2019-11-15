@@ -42,10 +42,12 @@ const Issue = ({repo_name, username, repo}) => {
     return  (
             <div className='issue-container'>
                 <div className='issue-body'> 
+                    <div>
                     <h1>{`${title}`} </h1>
                     {issue && <h2> {`${issue.body}`}</h2> }
                     <div className='issue-comments'>
                     </div>
+                </div>
                 </div>
 
                 <div className='comments-body'>
@@ -54,8 +56,8 @@ const Issue = ({repo_name, username, repo}) => {
                             Object.values(state.entities.repositories[issue.repository_id].issues[issue.id].comments).map( ({id, body, username, created_at}) => (
                         <li className='chat' key={id}>
                             <div className='chat-info'>
-                                <div>user: {username} </div>
-                                <div>{created_at.split('T')[0]} </div>
+                                <div>{username} - </div>
+                                <div>{created_at.split('T')[0]}</div>
                             </div>
                             <div className='comment-body'>{body}</div>
                         </li>
@@ -67,6 +69,7 @@ const Issue = ({repo_name, username, repo}) => {
             <div className='comment-form'>
                 <form onSubmit={handleSubmit}>
                     <textarea 
+                        className='comment-textarea'
                         value={commentBody}
                         onChange={e => setCommentBody(e.target.value)}
                     />

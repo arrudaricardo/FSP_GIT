@@ -10,7 +10,7 @@ const welcomeText = 'GitMonkey is a GitHub clone, web application version contro
     return (
     <div className="body"> 
         <div className="home">
-            <div className="welcome">Welcome {user && user.username} to Gitmokey
+            <div className="welcome">Welcome to Gitmonkey {user && `,${user.username}.`}
             </div>
         </div>
 
