@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import {StoreContext} from './App'
 
-const welcomeText = 'GitMonkey is a GitHub clone\n, web application version control using Git.'
+const welcomeText = 'GitMonkey is a GitHub clone, web application version control using Git.'
 
  const Home = () => {
     const { state } = useContext(StoreContext)

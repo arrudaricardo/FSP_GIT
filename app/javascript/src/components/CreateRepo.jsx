@@ -29,7 +29,12 @@ const CreateForm = () =>{
     useEffect( () => {
 
         if (repoSize  + 1 === Object.keys(state.entities.repositories).length ){
-            history.push(`/${state.session.currentUser.username}/${name}`)
+
+            if (state.session.currentUser){
+                history.push(`/${state.session.currentUser.username}/${name}`)
+            }else {
+                history.push('/')
+            }
         }
     },[Object.keys(state.entities.repositories)])
     
@@ -37,7 +42,7 @@ const CreateForm = () =>{
         <div className='AcessForm'> 
             <div className="form-body">
             <div className='form-error'>
-                {state.errors.slice(0,2).map( (error, i) => (
+                {state.errors.slice(0,1).map( (error, i) => (
                     <div key={i} > {error} </div>
                 ))}
             </div>
@@ -55,7 +60,7 @@ const CreateForm = () =>{
                         value={description} 
                         onChange={e => setDescription(e.target.value)}
                     /> 
-                    <div>
+                    <div style={{display: 'flex', paddingTop: 15}}>
                         <input type="checkbox" onChange={() => setReadme(prev => !prev)} defaultChecked={readme}/>
                     <p>Initialize README</p>
                   </div>

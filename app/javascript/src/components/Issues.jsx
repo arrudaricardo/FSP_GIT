@@ -11,10 +11,7 @@ const Issues = ({repo}) => {
 
     return (
         <>
-        <div className='create-issue-header'>
-            <Link className='create-issue-btn' to={`createissue`}>Create Issue</Link>
-        </div>
-
+            <h1> Open Issues for <b style={{textDecoration: 'underline'}}>{repo.name}</b></h1>
         <div className='issues-list'>
         { (repo && state.entities.repositories[repo.id].issues) && 
             <ul className='issue-ul'>

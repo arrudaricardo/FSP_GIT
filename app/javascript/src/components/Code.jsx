@@ -55,7 +55,7 @@ const Code = ({username, repo_name, repo}) => {
         </div>
 
         {state.entities.users[username] && 
-            <div className='delete-repo'>
+            <div style={{height: 'auto',width:'100%' }} className='delete-repo'>
                 <button className='deleteRepoBtn' onClick={handleDelete} >Delete Respository</button>
             </div>
         }

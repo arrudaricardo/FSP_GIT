@@ -6,14 +6,6 @@ class Api::RepositoriesController < ApplicationController
 
     # create git init folder /repositories/:@repo.user.username/:@repo.name
     if @repo.save
-      #create git folder as bare init
-      stdout = Repository.git_init_bare(@repo.user.username, @repo.name)
-      # stdout = Repository.git_init(@repo.user.username, @repo.name)
-
-      if params[:readme]
-       Repository.git_add_readme(@repo.user.username, @repo.name, params[:description])
-
-      end 
       render :show
 
     else 
@@ -25,7 +17,6 @@ class Api::RepositoriesController < ApplicationController
   def destroy
     @repo = Repository.find( params[:id] )
     if @repo.destroy
-      Repository.delete_repo(@repo.user.username, @repo.name)
       render json: "Repository delete with sucesss"
     else
       render json: "Unable to delete respository", status: 422

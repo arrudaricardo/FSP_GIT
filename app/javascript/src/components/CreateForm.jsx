@@ -33,7 +33,7 @@ const CreateForm = () => {
 
     return (
             <div className="form-body">
-            <div className='form-error'>
+            <div style={{paddingBottom: 0, height: '42px'}} className='form-error'>
                 {state.errors.length > 0 && state.errors.slice(-1)[0].map( (error, i) => (
                     <div key={i} > {error} </div>
                 ))}

@@ -58,7 +58,7 @@ const App = () => {
                                <CSSTransition
                                in={match != null}
                                timeout={300}
-                               className="AcessForm"
+                               className='AcessForm'
                                unmountOnExit
                            >
                                <div className='page'>

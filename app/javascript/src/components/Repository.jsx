@@ -35,9 +35,11 @@ const Respository = () => {
 
     return (
     <>
-        <div style={{ display: 'inline-flex' }}>
+        <div style={{ display: 'inline-flex', width: '100%', justifyContent: 'start' }}>
           <div style={{
-            paddingTop: '3em',
+              display: 'flex',
+              justifyContent: 'flex-start',
+            paddingTop: '3.1em',
             // width: '40%',
           }}>
             <ul style={{display: 'inline-flex', listStyleType: 'none', padding: 6 }}>
@@ -56,7 +58,7 @@ const Respository = () => {
                 ))}
             </div>
 
-            <div className='Container'>
+            <div className='repo-container'>
             <Switch>
                 <Route exact path={`/${username}/${repo_name}/`}> 
                 <>

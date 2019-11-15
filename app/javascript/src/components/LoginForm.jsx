@@ -33,13 +33,13 @@ const LoginForm = () => {
 
     return (
         <>
-                <div className='form-error'>
-                    {state.errors.slice(0,2).map( (error, i) => (
+                <div style={{paddingBottom: 0}} className='form-error'>
+                    {state.errors.slice(0,1).map( (error, i) => (
                         <div key={i} > {error} </div>
                     ))}
                 </div>
                 <form onSubmit={onSubmit}>
-                    <div>
+                    <div >
                         <input id='credential' type="text" placeholder="username or e-mail" value={credential} onChange={e => setCredential(e.target.value)} /> 
                         <input id='password' type="password" placeholder="password" value={password} onChange={e => setPassword(e.target.value)} /> 
                     </div>

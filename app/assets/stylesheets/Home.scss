@@ -6,20 +6,23 @@
     display: flex;
     justify-content: center; 
     border: 20px;
+    flex-wrap: wrap;
 }
 
 .home div{
-
   text-align: center;
 }
 
 
 .welcome {
   margin: 0 auto;
-  font-size: 22px;
+  font-size: 35px;
   text-align: center;
  margin: .25rem;
   padding: .25rem;
 
 }
 
+.AcessForm p {
+    font-size: 21px;
+}

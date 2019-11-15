@@ -5,20 +5,35 @@ input[type="text"] {
   box-shadow: 0 1px #fff;
   box-sizing: border-box;
   color: #696969;
-  height: 31px;
-  margin: 31px 0 0 29px;
+  height: 46px;
+  margin: 21px 0 0 0;
   padding-left: 20px;
   transition: box-shadow 0.3s;
-  width: 240px;
+  // width: 340px;
   
 }
 
+
+.AcessForm form div:first-child {
+    display: flex;
+    justify-content: center;
+   flex-direction: column; 
+   // align-content: center;
+}
+.AcessForm form  {
+    display: flex;
+    justify-content: center;
+   flex-direction: column; 
+   align-content: center;
+}
+
+
 .AcessForm { 
 	position: absolute;
-	top: 50%;
+	top: 46%;
 	left: 50%;
 	margin: -150px 0 0 -150px;
-	width:300px;
+	width:320px;
 	height:300px;
 }
 
@@ -31,7 +46,7 @@ input {
 	border: none;
 	outline: none;
 	padding: 10px;
-	font-size: 13px;
+	font-size: 23px;
 	color: #fff;
 	text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
 	border: 1px solid rgba(0,0,0,0.3);
@@ -71,7 +86,7 @@ input:focus { box-shadow: inset 0 -5px 45px rgba(100,100,100,0.4), 0 1px 1px rgb
   transition: 0.5s;
     padding: 0.3em 1.2em;
     margin:3em 0.3em 0.3em 0;
-	width: 40%; 
+	width: 70%; 
 }
 .AcessForm input[type="submit"]:hover {
   transform: scale(1.1);
@@ -84,10 +99,11 @@ input:focus { box-shadow: inset 0 -5px 45px rgba(100,100,100,0.4), 0 1px 1px rgb
 
 
 .form-error {
- font-size: 11px;
+ width: 100%;
+ font-size: 15px;
  height: 8px;
- max-height: 8px;
- padding: 4px;
+ // max-height: 8px;
+ padding-bottom: 14px;
  color: red;
 }
 

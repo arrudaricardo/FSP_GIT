@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { NavLink, useHistory } from "react-router-dom";
+import { NavLink, useHistory, useLocation } from "react-router-dom";
 import logo from '../img/logo.png'
 import Burger from '../img/menu-button-of-three-horizontal-lines.svg'
 import { LOGOUT_CURRENT_USER } from '../state/constants'
@@ -7,7 +7,8 @@ import {StoreContext} from './App'
 
 export default function Header() {
   const [isNavVisible, setNavVisibility] = useState(false);
-const history = useHistory();
+    const history = useHistory();
+    const location = useLocation();
     const { state, dispatch} = useContext(StoreContext)
 
   const toggleNav = () => {
@@ -21,6 +22,7 @@ const history = useHistory();
         history.push('/')
             
     }
+    console.log(history, location)
 
   return (
     <header className="Header">
@@ -30,6 +32,10 @@ const history = useHistory();
         <nav className="Nav">
             {state.session.currentUser ? 
             <>
+                {location.pathname.split('/').pop() === 'issues' &&
+
+                <NavLink to={`createissue`}>Create Issue</NavLink>
+                }
                 <NavLink to={`/${state.session.currentUser.username}/`}>My Repos</NavLink> 
                 <NavLink to="/create">Create Repo</NavLink>
                 <button onClick={handleLogout}>Logout</button>

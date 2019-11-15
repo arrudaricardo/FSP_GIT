@@ -1,15 +1,17 @@
 .repository {
+    font-size: 22px;
     display: flex;
-    justify-content: center;
+    align-items: center;
+    // justify-content: center;
     // margin-top: 1em;
     // margin: 3em;
+    flex-direction: column;
     height: 100%;
     width: 100%;
-    padding-top: 100px;
 }
 
-
 .repo-container {
+    width: 100%;
     display:flex;
     // flex-direction: column;
     align-content: center;
@@ -20,6 +22,7 @@
 }
 
 .repo-container label{
+    max-width: 200px;
     padding: 0.1em;
 }
 
@@ -27,12 +30,29 @@
     display: flex;
     justify-self: center;
     flex-direction: column;
-    max-width: 300px;
+
     h1{
+    width: 100%;
         padding-bottom: 2em;
         text-align: center;
-        font-size: 22px;
+        font-size: 24px;
     }
+
+    .repo-list-item {
+        width: 72em;
+        max-height: 44em;
+        
+        overflow: scroll;
+    }
+}
+
+
+.repo-container {
+    display: flex;
+    align-items: center;
+    justify-self:center;
+    flex-direction: column;
+
 }
 
 .repo-info {
@@ -60,16 +80,16 @@
     }
 
 .info-repo {
+    max-width: 40em;
     display:flex;
-    padding-top: 3em;
+    padding-top: 1em;
     flex-direction: column;
     align-content: center;
     justify-content: center; 
     border-top-color: transparent;
-
 }
 .info-repo span {
-    font-size: 14px!important;
+    font-size: 19px!important;
     display: block;
 }
 
@@ -93,7 +113,8 @@
 }
 
 .deleteRepoBtn { 
-	margin-bottom: 10px; 
+    margin-bottom: auto;
+	// margin-bottom: 10px; 
 	background: rgba(0,0,0,0.3);
 	border: none;
 	outline: none;
