@@ -1,8 +1,30 @@
+$scrollbar-width: 10px;
+$chat-thread-bgd-color:        rgba(25,147,147,0.2);
 .App {
     display: flex;
+    height:100%;
+    width: 100%;
+    zoom: 100%; 
+    -moz-transform: scale(3); 
+    -moz-transform-origin: 0 0;
+
+}
+* {
+   box-sizing: border-box; 
+   font-size: 20px;
+     }
+
+#root {
+    height: 100%;
+    width: 100%;
 }
 
-.container {
+.container,
+.Container {
+
+    flex-direction: column;
+    display:flex;
+    align-items: center;
     height:100%;
     width: 100%;
 }
@@ -52,4 +74,18 @@ a:hover
      color:#00A0C6; 
      text-decoration:none; 
      cursor:pointer;  
+}
+
+::-webkit-scrollbar {
+    width: $scrollbar-width;
+}
+ 
+::-webkit-scrollbar-track {
+    border-radius: $scrollbar-width;
+    background-color: rgba(25,147,147,0.1);
+}
+ 
+::-webkit-scrollbar-thumb {
+     border-radius: $scrollbar-width;
+    background-color: $chat-thread-bgd-color;
 }

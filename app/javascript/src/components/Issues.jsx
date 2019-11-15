@@ -10,11 +10,11 @@ const Issues = ({repo}) => {
 
 
     return (
-    <div>
-
+        <>
         <div className='create-issue-header'>
             <Link className='create-issue-btn' to={`createissue`}>Create Issue</Link>
         </div>
+
         <div className='issues-list'>
         { (repo && state.entities.repositories[repo.id].issues) && 
             <ul className='issue-ul'>
@@ -27,8 +27,7 @@ const Issues = ({repo}) => {
             </ul>
             }
         </div>
-    </div>
-
+    </>
    )
 }
 

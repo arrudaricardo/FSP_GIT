@@ -43,11 +43,18 @@ export const getRepoLs = (username, reponame) =>
 //
 // arr[<string>]
 //["README.md","aaaa.js","afolder/afle.js","afolder/hello.js","afolder/poke/pika.js"]}
-export const parseRepoLs = arr => {
-  // list of folders name
-  let result = {};
+// export const parseRepoLs = arr => {
+//   let folder = {};
+//   // list of folders name
+//   let result = (path, files) => {
+//     children, path, files;
+//   };
 
-  arr.split("/").forEach(e => {
-    let isFolder = e.includes(".");
-  });
-};
+//   for (let path of arr) {
+//     let temp = {};
+//     let pathArr = path.split("/");
+//     let (let i = 0; i < pathArr.length; i++){
+
+//       }
+//   }
+// };

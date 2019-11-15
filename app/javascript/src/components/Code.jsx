@@ -11,14 +11,10 @@ const Code = ({username, repo_name, repo}) => {
     const {state, dispatch} = useContext(StoreContext)
 
     const handleDelete = () => {
-        // get repo id by user/reponame
-        //entities.users.ricardo.repositories
         let repo = Object.values(state.entities.users[username].repositories).filter(e => e.name === repo_name)
         deleteRepo(repo.id)(dispatch)
         history.push('/') 
     }
-
-
     return ( 
         <>
             <div className='repo-container'> 

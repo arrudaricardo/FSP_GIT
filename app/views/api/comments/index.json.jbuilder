@@ -9,7 +9,7 @@ comments.each do |comment|
   end
   json.comments do 
     json.set! comment.id do
-      json.extract! comment, :id, :body, :user_id
+      json.extract! comment, :id, :body, :user_id, :created_at
       json.username comment.user.username
     end
   end

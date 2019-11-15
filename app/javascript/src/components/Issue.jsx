@@ -23,7 +23,6 @@ const Issue = ({repo_name, username, repo}) => {
     // get comment
      useEffect ( () => {
          if (issue) {
-             console.log(repo.id, issue.id)
              getComments(repo.id,  issue.id)(dispatch)
          }
      }, [issue, state.ui.loading] )
@@ -33,7 +32,6 @@ const Issue = ({repo_name, username, repo}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(commentBody, issue.repository_id, issue.id)
         createComments({body:commentBody,
                        repoId: issue.repository_id,
                        issueId: issue.id})(dispatch)
@@ -42,27 +40,29 @@ const Issue = ({repo_name, username, repo}) => {
     }
 
     return  (
-        <>
-            <div className='issue-body'> 
-                <h1>{`${title}`} </h1>
-                {issue && <h2> {`${issue.body}`}</h2> }
-                <div className='issue-comments'>
+            <div className='issue-container'>
+                <div className='issue-body'> 
+                    <h1>{`${title}`} </h1>
+                    {issue && <h2> {`${issue.body}`}</h2> }
+                    <div className='issue-comments'>
+                    </div>
                 </div>
-            </div>
 
-            <div className='comments-body'>
-                <ul>
-                    { (issue && state.entities.repositories[issue.repository_id].issues[issue.id].comments) &&
-                        Object.values(state.entities.repositories[issue.repository_id].issues[issue.id].comments).map( ({id, body, username}) => (
-                    <li key={id}>
-                        <p>{body}</p>
-                        <div> by {username} </div>
-                    </li>
-                    ) ) }
+                <div className='comments-body'>
+                    <ul className='chat-box'>
+                        { (issue && state.entities.repositories[issue.repository_id].issues[issue.id].comments) &&
+                            Object.values(state.entities.repositories[issue.repository_id].issues[issue.id].comments).map( ({id, body, username, created_at}) => (
+                        <li className='chat' key={id}>
+                            <div className='chat-info'>
+                                <div>user: {username} </div>
+                                <div>{created_at.split('T')[0]} </div>
+                            </div>
+                            <div className='comment-body'>{body}</div>
+                        </li>
+                        ) ) }
 
-                </ul>
-            </div>
-
+                    </ul>
+                </div>
 
             <div className='comment-form'>
                 <form onSubmit={handleSubmit}>
@@ -72,9 +72,9 @@ const Issue = ({repo_name, username, repo}) => {
                     />
                     <input value='Post'type="submit"/>
                 </form> 
+            </div> 
 
-            </div>
-        </>
+        </div>
     )
 }
 
